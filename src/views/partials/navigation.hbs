@@ -12,19 +12,36 @@
 
       </ul>
       <ul class="navbar-nav ml-auto">
+        {{#if Admin}}
+          <li class="nav-item active">
+            <a class="nav-link" href="">Panel</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="">Nuevo articulo</a>
+          </li>
+        {{else}}
+          <li class="nav-item active">
+            <a class="nav-link" href="">Carrito</a>
+          </li>
+          <liclass="nav-item active">
+            <a class="nav-link" href="">Articulos</a>
+          </li>
+        {{/if}}
+      </ul>
+      <ul class="navbar-nav ml-auto">
         {{#if user}}
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              User 
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+            {{name}}
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              
-              <a class="dropdown-item" href="/users/logout">Logout</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">    
+              <a class="dropdown-item" href="/users/logout">Cerrar Sesión</a>
             </div>
           </li>
         {{else}}
           <li class="nav-item">
             <a class="nav-link" href="/users/signin">Login</a>
+            
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/users/signup">Registro</a>

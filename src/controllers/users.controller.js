@@ -29,9 +29,9 @@ export const singup = async (req, res) => {
     if (emailUser) {
       req.flash("error_msg", "El correo ya existe registrado");
       res.redirect("/users/signup");
-    } else {
+    }else {
       // Saving a New User
-      const rol=1;
+      const rol=2;
       const newUser = new User({ name,ape,direccion, tel, email, password,rol});
       newUser.password = await newUser.encryptPassword(password);
       await newUser.save();
@@ -43,6 +43,7 @@ export const singup = async (req, res) => {
 
 export const renderSigninForm = (req, res) => res.render("users/signin");
 
+
 export const signin = passport.authenticate("local", {
   successRedirect: "/",
   failureRedirect: "/users/signin",
@@ -52,6 +53,6 @@ export const signin = passport.authenticate("local", {
 
 export const logout = (req, res) => {
   req.logout();
-  req.flash("success_msg", "You are logged out now.");
+  req.flash("success_msg", "Cerraste Sesión correctamente");
   res.redirect("/users/signin");
 };

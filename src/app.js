@@ -12,7 +12,6 @@ import { createAdminUser } from "./libs/createUser";
 import config from "./config";
 
 import indexRoutes from "./routes/index.routes";
-import notesRoutes from "./routes/notes.routes";
 import userRoutes from "./routes/users.routes";
 import "./config/passport";
 
@@ -56,13 +55,28 @@ app.use((req, res, next) => {
   res.locals.error_msg = req.flash("error_msg");
   res.locals.error = req.flash("error");
   res.locals.user = req.user || null;
+ 
+  if (res.locals.user != null){
+    res.locals.rol = req.user.rol || null;
+    res.locals.name = req.user.name || null;
+    var rol=res.locals.user.rol || null;
+    console.log(rol);
+    if(rol==1){
+      res.locals.Admin=true;
+    }else{
+      if(rol==2){
+        res.locals.Admin=null;
+      }
+    }
+  }
+  
   next();
 });
 
 // routes
 app.use(indexRoutes);
 app.use(userRoutes);
-app.use(notesRoutes);
+
 
 // static files
 app.use(express.static(path.join(__dirname, "public")));
