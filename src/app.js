@@ -13,13 +13,25 @@ import config from "./config";
 
 import indexRoutes from "./routes/index.routes";
 import userRoutes from "./routes/users.routes";
+import listpro from "./routes/adminpro.routes";
+import agregarcategoria from  "./routes/adminpro.routes";
+import mostrarcategorias from  "./routes/adminpro.routes";
+import eliminarcategoria from  "./routes/adminpro.routes";
+import editpro from "./routes/adminpro.routes";
+import list from "./routes/adminpro.routes";
 import ProductController from "./routes/products.routes"
 import "./config/passport";
-
+import multer from "multer";
 // Initializations
 const app = express();
 createAdminUser();
 
+const storage = multer.diskStorage({
+  destination: path.join(__dirname, 'public/img/uploads') ,
+  filename: (req, file, cb) => {
+    cb(null,  file.originalname);
+  }
+});
 // settings
 app.set("port", config.PORT);
 app.set("views", path.join(__dirname, "views"));
@@ -49,6 +61,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.use(multer({
+  storage,
+  dest: path.join(__dirname, 'public/img/uploads')
+}).single('image'));
 
 // Global Variables
 app.use((req, res, next) => {
@@ -78,6 +94,12 @@ app.use((req, res, next) => {
 app.use(indexRoutes);
 app.use(userRoutes);
 app.use(ProductController);
+app.use(listpro);
+app.use(list);
+app.use(agregarcategoria);
+app.use(mostrarcategorias);
+app.use(eliminarcategoria);
+app.use(editpro);
 
 
 // static files
