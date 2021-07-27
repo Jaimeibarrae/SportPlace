@@ -13,6 +13,7 @@ import config from "./config";
 
 import indexRoutes from "./routes/index.routes";
 import userRoutes from "./routes/users.routes";
+import ProductController from "./routes/products.routes"
 import "./config/passport";
 
 // Initializations
@@ -76,6 +77,7 @@ app.use((req, res, next) => {
 // routes
 app.use(indexRoutes);
 app.use(userRoutes);
+app.use(ProductController);
 
 
 // static files
