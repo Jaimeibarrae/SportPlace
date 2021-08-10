@@ -6,6 +6,18 @@ export const renderSignUpForm = (req, res) => res.render("users/signup");
 export const singup = async (req, res) => {
   let errors = [];
   const { name, ape,direccion, tel, email, password, confirm_password } = req.body;
+  if (name.length>50){
+    errors.push({text:"El nombre no puede ser tan largo"})
+  }
+  if (ape.length>50){
+    errors.push({text:"El apellido no puede ser tan largo"})
+  }
+  if (name.length>50){
+    errors.push({text:"La dirección no puede ser tan larga"})
+  }
+  if (isNaN(tel)){
+    errors.push({text:"El campo telefono debe de ser numerico"})
+  }
   if (password != confirm_password) {
     errors.push({ text: "Las contraseñas no coinciden" });
   }
