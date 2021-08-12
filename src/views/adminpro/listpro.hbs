@@ -319,14 +319,14 @@ ul.tabs li a .tab-text{
 			
 				 
 			<div>
-				<select name="Categorias" id="categoria">
+				<select name="Categorias" id="categoria" class="form-control">
                     <option value="" disabled selected>Elige la Categoria</option> 
 					{{#each list}}    
 					<option value="{{this.namecategoria}}">{{this.namecategoria}}</option>
 					{{/each}}	
 						</select>
 						&nbsp;&nbsp;&nbsp;&nbsp;
-				<select name="estado" class="form-select" aria-label="Default select example">
+				<select name="estado" class="form-control" aria-label="Default select example">
 					<option selected>Elige el estado </option>
 					<option value="false">Desactivar</option>
 					<option value="true">Activar</option>
@@ -339,7 +339,7 @@ ul.tabs li a .tab-text{
 			
                 <div class="custom-file">
 					<label>Elige la imagen del Producto:</label>
-					<input type="file" name="image" accept="image/gif, image/jpeg, image/png"/>
+					<input type="file" name="image" class="form-control-file" accept="image/gif, image/jpeg, image/png"/>
                     </div>
 	
 			</td>
