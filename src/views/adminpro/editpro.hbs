@@ -1,1 +1,67 @@
-<h1>jou</h1>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+  .uno {
+    background-color: rgb(255, 255, 255);
+}
+</style>
+<div class="uno">
+   <div class="card-header">
+      <h3>Editar Producto</h3>
+    </div>
+ 
+   <div class="container">
+		<form action="/editarprodu/{{produ._id}}" method="POST">
+	
+			<td>
+				<div class="form-group">
+                 	<input type="text" class="form-control " name="NombreProducto" value="{{produ.NombreProducto}}" disabled > 
+              </div> 
+				<div class="form-group">
+                    <textarea name="description"  class="form-control"  required>{{produ.description}}</textarea>
+                </div>
+				<div class="form-group">
+                	<input type="number" class="form-control " name="cantidad" value="{{produ.cantidad}}" required> 
+              </div>
+			   <div class="form-group">
+                	<input type="number" step="any" class="form-control " name="precio" value="{{produ.precio}}" required> 
+              </div>
+			</td>
+			<td>
+
+			
+				 
+			<div>
+				<select name="Categorias" id="categoria" disabled>
+           <option value="{{produ.Categorias}}" disabled selected>{{produ.Categorias}}"</option> 
+					{{#each list}}    
+					<option value="{{this.namecategoria}}">{{this.namecategoria}}</option>
+					{{/each}}	
+						</select>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+				<select name="estado" class="form-select" disabled>
+					<option selected>{{produ.estado}}</option>
+					<option value="false">Desactivar</option>
+					<option value="true">Activar</option>
+					</select>
+			</div><br>
+				
+			<div>
+				<label></label>
+			</div>
+               
+                <div class="col-md-4 mx-auto">
+                  <img src="{{produ.path}}" class="card-img-top"  width="40" height="150"></th>
+                </div>
+	
+			</td>
+	  
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+  	</form>
+</div>
+
+</div>

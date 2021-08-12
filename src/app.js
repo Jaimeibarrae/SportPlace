@@ -15,13 +15,15 @@ import indexRoutes from "./routes/index.routes";
 import userRoutes from "./routes/users.routes";
 import listpro from "./routes/adminpro.routes";
 import agregarcategoria from  "./routes/adminpro.routes";
-import mostrarcategorias from  "./routes/adminpro.routes";
+import eliminarproducto from  "./routes/adminpro.routes";
 import eliminarcategoria from  "./routes/adminpro.routes";
-import editpro from "./routes/adminpro.routes";
+import updateProducto from  "./routes/adminpro.routes";
+import renderedit from "./routes/adminpro.routes";
 import list from "./routes/adminpro.routes";
 import ProductController from "./routes/products.routes"
 import "./config/passport";
 import multer from "multer";
+
 // Initializations
 const app = express();
 createAdminUser();
@@ -96,10 +98,11 @@ app.use(userRoutes);
 app.use(ProductController);
 app.use(listpro);
 app.use(list);
+app.use(updateProducto);
 app.use(agregarcategoria);
-app.use(mostrarcategorias);
+app.use(eliminarproducto);
 app.use(eliminarcategoria);
-app.use(editpro);
+app.use(renderedit);
 
 
 // static files

@@ -121,7 +121,8 @@ ul.tabs li a .tab-text{
 							<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">Agregar Nuevo Produto</button>
 						
 					</div>
-				<h1>Inicio</h1>
+				<h1>Lista de Productos</h1>
+				<br>
 				<div>
 					<table class="table">
 						<thead>
@@ -131,8 +132,10 @@ ul.tabs li a .tab-text{
 							<th scope="col">Cantidad </th>
 							<th scope="col">Precio </th>
 							<th scope="col">Imagen </th>
-							<th scope="col">Estado </th>
-							<th scope="col">Editar/Eliminar</th>
+							<th scope="col">Categoria </th>
+							<!--<th scope="col">Estado </th>-->
+							<th scope="col">Editar</th>
+							<th>Eliminar</th>
 						</tr>
 						</thead>
 						<tbody>
@@ -145,9 +148,43 @@ ul.tabs li a .tab-text{
 								<th>{{this.precio}}</th>
 								
 								<th><img src="{{this.path}}" class="card-img-top"  width="70" height="50"></th>
-								<th>{{this.estado}}</th>
+								<th>{{this.Categorias}}</th>
+								<!--<th></th>-->
 								
-								<th><button>Editar</button>&nbsp;&nbsp;&nbsp;<button>Eliminar</button</th>
+								<th>
+									 
+									<form action="/adminpro/editpros/{{this._id}}" method="GET">
+								
+										<button type="submit" class="btn btn-primary  btn-sm">Editar</button>
+									</form>
+								</th>
+								<th>
+									<form action="/deletep/{{_id}}?_method=DELETE" method="POST">
+										<input type="hidden" name="_method" value="DELETE">
+										<button type="submit" class="btn btn-danger btn-sm">Delete</button>
+									</form>
+										
+									<!--	<button type="button" class="btn btn-danger btn-block btn-sm" data-toggle="modal" data-target="#exampleModal">Eliminar</button>
+
+										<!-- Modal eliminar 
+										<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+											<div class="modal-header">
+												<h4 class="modal-title" id="exampleModalLabel">Estas seguro de que deseas eliminar esta categoria?</h4>
+											    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											</div>
+											<div class="modal-footer">
+											<form action="/deletep/{{_id}}?_method=DELETE" method="POST">
+												<input type="hidden" name="_method" value="DELETE">
+												<button type="submit" class="btn btn-danger btn-block btn-sm">Delete</button>
+											</form>
+											
+											</div>
+											</div>
+										</div>
+										</div>-->
+								</th>	
 		
 							</tr>
 							{{/each}}
@@ -157,20 +194,22 @@ ul.tabs li a .tab-text{
 				
 
 			</article>
-			<article id="tab2">
+			<article id="tab2" >
 				<div class="card-body d-flex justify-content-between align-items-center">
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Agregr Categoria</button>
-						
+				
 					</div>
+							<h1>Lista de Categorias</h1>
+				<br>
 		<div>
 		
 					<table class="table">
 						<thead>
 						<tr>
 							<th scope="col">Categoria</th>
-							<th scope="col">Estado </th>
-							<th scope="col">Editar/Eliminar</th>
+							<!--<th scope="col">Estado </th>-->
+							<th scope="col">Eliminar</th>
 						</tr>
 						</thead>
 						<tbody>
@@ -179,10 +218,13 @@ ul.tabs li a .tab-text{
 							<tr>
 								
 								<th>{{this.namecategoria}}</th>
-								<th>{{this.Estado}}</th>
+								<!--<th>this.Estado</th>-->
 								<th>
-	
-									 <a href="/deleteProduct/{{this._id}}"><i class="" aria-hidden="true"></i>Eliminar</a> |
+									
+									<form action="/deletec/{{_id}}?_method=DELETE" method="POST">
+										<input type="hidden" name="_method" value="DELETE">
+										<button type="submit" class="btn btn-danger  btn-sm">Eliminar</button>
+									</form>
 								</th>
 		
 							</tr>
@@ -269,39 +311,37 @@ ul.tabs li a .tab-text{
                 	<input type="number" class="form-control " name="cantidad" placeholder="Cantidad Producto" required> 
               </div>
 			   <div class="form-group">
-                	<input type="number" class="form-control " name="precio" placeholder="Precio Producto" required> 
+                	<input type="number" step="any"class="form-control " name="precio" placeholder="Precio Producto" required> 
               </div>
 			</td>
 			<td>
-					<div>
-						<select name="categoria" class="form-select" aria-label="Default select example"></select>
-						<option selected>Elige Una Categoria </option>
-				{{#each list}}
-				 
+
 			
+				 
+			<div>
+				<select name="Categorias" id="categoria">
+                    <option value="" disabled selected>Elige la Categoria</option> 
+					{{#each list}}    
 					<option value="{{this.namecategoria}}">{{this.namecategoria}}</option>
-					
-					
-				{{/each}}	
-				</select>
-			</div>
-			  <div>
-				  	<select name="estado" class="form-select" aria-label="Default select example">
+					{{/each}}	
+						</select>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+				<select name="estado" class="form-select" aria-label="Default select example">
 					<option selected>Elige el estado </option>
 					<option value="false">Desactivar</option>
 					<option value="true">Activar</option>
 					</select>
-			  </div>
-		
-		
-			  
-                            <div class="input-group mb-3">
-                                <div class="custom-file">
-                                    <input type="file" name="image" class="custom-file-input" id="inputGroupFile02">
-                                    <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose
-                                        file</label>
-                                </div>
-
+			</div><br>
+					
+        <div class="input-group mb-3">
+			
+				
+			
+                <div class="custom-file">
+					<label>Elige la imagen del Producto:</label>
+					<input type="file" name="image" accept="image/gif, image/jpeg, image/png"/>
+                    </div>
+	
 			</td>
 		</tr>	
 		</table>	  
@@ -316,3 +356,12 @@ ul.tabs li a .tab-text{
   </div>
   	</form>
 </div>
+<script>
+var select = document.getElementById('categoria');
+	select.addEventListener('change',
+		function(){
+			var selectedOption = this.options[select.selectedIndex];
+			console.log(selectedOption.value + ': ' + selectedOption.text);
+		});
+
+</script>

@@ -3,24 +3,24 @@ import {
 listpro,
 agregarcategoria,
 eliminarcategoria,
+eliminarproducto,
+renderedit,
 subirproduct,
-list,
-editpro,
-mostrarcategorias
+updateProducto,
 } from "../controllers/adminpro.controller";
-import Categoria from "../models/Categoria";
+
 
 
 const router = Router();
 
 // Routes
-router.get("/adminpro/listpro", list);
-router.get('/adminpro/listpro', listpro);
-//router.get("/adminpro/listpro",  mostrarcategorias);
-
+router.get("/adminpro/listpro", listpro);
 router.post("/addProduct", agregarcategoria);
-
-router.get("/deleteProduct/:id", eliminarcategoria);
+router.delete("/deletep/:id", eliminarproducto);
+router.delete("/deletec/:id", eliminarcategoria);
 router.post('/upload',subirproduct);
-router.put('/editpro', editpro);
+router.post("/editarprodu/:id", updateProducto);
+
+    
+router.get("/adminpro/editpros/:id", renderedit);
 export default router;

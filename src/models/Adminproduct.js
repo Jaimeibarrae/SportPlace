@@ -10,7 +10,7 @@ const ProductoSchema = new Schema({
     mimetype: {type: String},
     precio: {type: Number},
     estado: { type: String},
-    Categoria: {type: String},
+    Categorias: {type: String},
     created_at: {type: Date, default: Date.now()}
 });
 
