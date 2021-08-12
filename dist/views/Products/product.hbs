@@ -1,0 +1,55 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Sport Place</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../assets/css/estilos.css">
+    <!-- BOOTSTRAP - BOOTSWATCH THEME - COSMOS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/materia/bootstrap.min.css">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" href="../../../assets/css/main.css">
+<div class="container" id="main">
+        <div class="row">
+{{#each product }}
+ 
+<div class="col-md-3" style="margin-top:20px" >
+    <div class="panel panel-default">
+        <div class="panel-heading" >
+            <div class="card" style="width: 18rem;">
+                <img src={{ this.path }} class="card-img-top" alt="..." width="80" height="160">
+                <div class="card-body">
+
+                    <h5 class="card-title">{{ this.NombreProducto }}</h5>
+                    <p class="card-text">{{this.description }}</p></br>
+                    <p class="card-text">Cantidad:</p>
+                    <p class="card-text">{{ this.cantidad }}</p></br>
+                    <p class="card-text">Precio:</p>
+                    <p class="card-text">${{ this.precio }}</p>
+                    <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-1" style="" >
+
+</div>
+</br>
+</br>
+</br>
+{{/each}}
+</div>
+</div>
+    
+    <!-- Scritps -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+

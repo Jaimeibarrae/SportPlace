@@ -1,0 +1,70 @@
+<div class="">
+  <div class="row">
+  <div class="col-md-8 mx-auto">
+    <div class="card border-success ">
+      <div class="card-header">
+        <h1>Registro <i class="fa fa-user" aria-hidden="true" style="color:#32b13f"></i></h1>
+      </div>
+      <div class="card-body colums">
+        <form action="/users/signup" method="POST">
+          <div class="form-row">
+            <div class="col">
+              <div class="form-group">
+                <input type="text" class="form-control " name="name" placeholder="Nombre(S)" value="{{name}}" autofocus> 
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <input type="email" class="form-control" name="email" placeholder="Email" value="{{email}}">
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <div class="form-group">
+                  <input type="text" class="form-control" name="ape" placeholder="Apellido(S)" value="{{ape}}">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Password" value="{{password}}">
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <div class="form-group">
+                <input type="text" class="form-control" name="direccion" placeholder="Dirección" value="{{direccion}}">
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" value="{{confirm_password}}">
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-6">
+              <div class="form-group">
+                <input type="text" class="form-control" name="tel" placeholder="Telefono" value="{{tel}}">
+              </div>
+            </div>
+            <div class="col">
+              </br>
+              <button class="btn btn-success btn-block btn-sm">
+                Registrarme
+              </button>
+              </br>
+              <center>
+                <a href="/">Regresar</a>
+              </center>
+            </div>
+          </div>            
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
