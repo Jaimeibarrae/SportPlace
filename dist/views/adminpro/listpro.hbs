@@ -1,0 +1,367 @@
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <style>
+	*{
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
+.wrap{
+	width: 800px;
+	max-width: 90%;
+	margin: 30px auto;
+}
+
+ul.tabs{
+	width: 100%;
+	background: #363636;
+	list-style: none;
+	display: flex;
+}
+
+ul.tabs li{
+	width: 18%;
+}
+
+ul.tabs li a{
+	color: #fff;
+	text-decoration: none;
+	font-size: 16px;
+	text-align: center;
+
+	display: block;
+	padding: 20px 0px;
+}
+
+.active{
+	background: #0984CC;
+}
+
+ul.tabs li a .tab-text{
+	margin-left: 8px;
+}
+
+.secciones{
+	width: 100%;
+	background: #fff;
+}
+
+.secciones article{
+	padding: 30px;
+}
+
+.secciones article p{
+	text-align: justify;
+}
+
+
+@media screen and (max-width: 700px){
+	ul.tabs li{
+		width: none;
+		flex-basis: 0;
+		flex-grow: 1;
+	}
+}
+
+@media screen and (max-width: 450px){
+	ul.tabs li a{
+		padding: 15px 0px;
+	}
+
+	ul.tabs li a .tab-text{
+		display: none;
+	}
+
+	.secciones article{
+		padding: 20px;
+	}
+
+}
+</style>
+	
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script>
+		$(document).ready(function(){
+	$('ul.tabs li a:first').addClass('active');
+	$('.secciones article').hide();
+	$('.secciones article:first').show();
+
+	$('ul.tabs li a').click(function(){
+		$('ul.tabs li a').removeClass('active');
+		$(this).addClass('active');
+		$('.secciones article').hide();
+
+		var activeTab = $(this).attr('href');
+		$(activeTab).show();
+		return false;
+	});
+});
+	</script>
+
+
+	<div>
+		<ul class="tabs">
+			<li><a href="#tab1"><span class="tab-text">Productos</span></a></li>
+			<li><a href="#tab2"></span><span class="tab-text">Categoria</span></a></li>
+			
+		</ul>
+
+		<div class="secciones">
+			<article id="tab1">
+				<div class="card-body d-flex justify-content-between align-items-center">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal2">Agregar Nuevo Produto</button>
+						
+					</div>
+				<h1>Lista de Productos</h1>
+				<br>
+				<div>
+					<table class="table">
+						<thead>
+						<tr>
+							<th scope="col">Nombre Producto</th>
+							<th scope="col">Descripcion </th>
+							<th scope="col">Cantidad </th>
+							<th scope="col">Precio </th>
+							<th scope="col">Imagen </th>
+							<th scope="col">Categoria </th>
+							<!--<th scope="col">Estado </th>-->
+							<th scope="col">Editar</th>
+							<th>Eliminar</th>
+						</tr>
+						</thead>
+						<tbody>
+							
+							{{#each produlist}}
+							<tr>
+								<th>{{this.NombreProducto}}</th>
+								<th>{{this.description}}</th>
+								<th>{{this.cantidad}}</th>
+								<th>{{this.precio}}</th>
+								
+								<th><img src="{{this.path}}" class="card-img-top"  width="70" height="50"></th>
+								<th>{{this.Categorias}}</th>
+								<!--<th></th>-->
+								
+								<th>
+									 
+									<form action="/adminpro/editpros/{{this._id}}" method="GET">
+								
+										<button type="submit" class="btn btn-primary  btn-sm">Editar</button>
+									</form>
+								</th>
+								<th>
+									<form action="/deletep/{{_id}}?_method=DELETE" method="POST">
+										<input type="hidden" name="_method" value="DELETE">
+										<button type="submit" class="btn btn-danger btn-sm">Delete</button>
+									</form>
+										
+									<!--	<button type="button" class="btn btn-danger btn-block btn-sm" data-toggle="modal" data-target="#exampleModal">Eliminar</button>
+
+										<!-- Modal eliminar 
+										<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+											<div class="modal-header">
+												<h4 class="modal-title" id="exampleModalLabel">Estas seguro de que deseas eliminar esta categoria?</h4>
+											    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											</div>
+											<div class="modal-footer">
+											<form action="/deletep/{{_id}}?_method=DELETE" method="POST">
+												<input type="hidden" name="_method" value="DELETE">
+												<button type="submit" class="btn btn-danger btn-block btn-sm">Delete</button>
+											</form>
+											
+											</div>
+											</div>
+										</div>
+										</div>-->
+								</th>	
+		
+							</tr>
+							{{/each}}
+						</tbody>
+					</table>
+				</div>
+				
+
+			</article>
+			<article id="tab2" >
+				<div class="card-body d-flex justify-content-between align-items-center">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Agregr Categoria</button>
+				
+					</div>
+							<h1>Lista de Categorias</h1>
+				<br>
+		<div>
+		
+					<table class="table">
+						<thead>
+						<tr>
+							<th scope="col">Categoria</th>
+							<!--<th scope="col">Estado </th>-->
+							<th scope="col">Eliminar</th>
+						</tr>
+						</thead>
+						<tbody>
+							
+							{{#each list}}
+							<tr>
+								
+								<th>{{this.namecategoria}}</th>
+								<!--<th>this.Estado</th>-->
+								<th>
+									
+									<form action="/deletec/{{_id}}?_method=DELETE" method="POST">
+										<input type="hidden" name="_method" value="DELETE">
+										<button type="submit" class="btn btn-danger  btn-sm">Eliminar</button>
+									</form>
+								</th>
+		
+							</tr>
+							{{/each}}
+						</tbody>
+						</thead>
+					</table>
+				</div>
+				
+			</article>
+		
+		</div>
+	</div>
+
+{{!-- 
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+  <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+  <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="home" class="tab-pane fade in active">
+    <h3>HOME</h3>
+    <p>Some content.</p>
+  </div>
+  <div id="menu1" class="tab-pane fade">
+    <h3>Menu 1</h3>
+    <p>Some content in menu 1.</p>
+  </div>
+  <div id="menu2" class="tab-pane fade">
+    <h3>Menu 2</h3>
+    <p>Some content in menu 2.</p>
+  </div>
+</div> --}}
+
+<div class="modal" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Agregar Categoria</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<form action="/addProduct" method="POST">
+         <div class="form-group">
+              <input type="text" class="form-control " name="namecategoria" placeholder="Nombre Categoria" required> 
+            
+			  </div>
+		
+      </div>
+      <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+      </div>
+	  </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="myModal2" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Agregar Nuevo Produto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<form action="/upload" method="post" enctype="multipart/form-data">
+		<table></table>
+		<tr>
+			<td>
+				<div class="form-group">
+                 	<input type="text" class="form-control " name="NombreProducto" placeholder="Nombre Producto" required> 
+              </div> 
+				<div class="form-group">
+                    <textarea name="description" placeholder="Description" class="form-control" required></textarea>
+                </div>
+				<div class="form-group">
+                	<input type="number" class="form-control " name="cantidad" placeholder="Cantidad Producto" required> 
+              </div>
+			   <div class="form-group">
+                	<input type="number" step="any"class="form-control " name="precio" placeholder="Precio Producto" required> 
+              </div>
+			</td>
+			<td>
+
+			
+				 
+			<div>
+				<select name="Categorias" id="categoria" class="form-control">
+                    <option value="" disabled selected>Elige la Categoria</option> 
+					{{#each list}}    
+					<option value="{{this.namecategoria}}">{{this.namecategoria}}</option>
+					{{/each}}	
+						</select>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+				<select name="estado" class="form-control" aria-label="Default select example">
+					<option selected>Elige el estado </option>
+					<option value="false">Desactivar</option>
+					<option value="true">Activar</option>
+					</select>
+			</div><br>
+					
+        <div class="input-group mb-3">
+			
+				
+			
+                <div class="custom-file">
+					<label>Elige la imagen del Producto:</label>
+					<input type="file" name="image" class="form-control-file" accept="image/gif, image/jpeg, image/png"/>
+                    </div>
+	
+			</td>
+		</tr>	
+		</table>	  
+       </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">cerrar</button>
+      </div>
+    </div>
+  </div>
+  	</form>
+</div>
+<script>
+var select = document.getElementById('categoria');
+	select.addEventListener('change',
+		function(){
+			var selectedOption = this.options[select.selectedIndex];
+			console.log(selectedOption.value + ': ' + selectedOption.text);
+		});
+
+</script>
